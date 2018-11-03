@@ -1,7 +1,11 @@
-console.log(`Starting Notes.js`);
+console.log('Starting notes.js');
 
 
+module.exports.addNote = () => {
+    console.log('Addnote');
+    return 'newNote';
+}
 
-module.exports.age = 25;
-
-
+module.exports.add = (a, b) => {
+    return a + b;
+}
