@@ -1,15 +1,36 @@
+// Starting Note App
 console.log('Starting App');
 
-// Built in node modules
+// =======
+// MODULES
+// =======
+// Built in node modules 
 const fs = require('fs');
-const os = require('os');
-const _ = require('lodash');
+// 3rd Party node module
+const _ = require('lodash'); 
+// Local node modules
 const notes = require('./notes.js');
 
-// Checks if a value evaluates to a string
-console.log(_.isString(true));
-console.log(_.isString('Andrew'));
+// Start with argv[2] & higher - argv[0] & argv[1] cannot be reassigned for new commands.
+// process.argv is part of the Node environment, not a 3rd party module.
+let command = process.argv[2];
 
-// Uniq gets rid of duplicates
-let filferedArray = _.uniq(['April', 1, 2, 3, 4, 2, 'April', false, true, true]);
-console.log(filferedArray);
+// Logs the command at index 2
+console.log('Command: ', command);
+
+// Logs the updated array with our command
+console.log(process.argv);
+
+// Checks if the command variable paased equals add, list, read, or, remove with error meesage otherwise.
+if (command === 'add') {
+    console.log('Adding new note');
+} else if (command === 'list') {
+    console.log('Listing all notes');
+} else if (command === 'read') {
+    console.log('Note being read');
+} else if (command === 'remove') {
+    console.log('Removing note');
+} else {
+    console.log('Command not recgonized')
+}
+
