@@ -17,9 +17,10 @@ const notes = require('./notes.js');
 // Uses yargs npm to parse passed values that get converted into an object
 const argv = yargs.argv;
 
-// Start with argv[2] & higher - argv[0] & argv[1] cannot be reassigned for new commands.
-// process.argv is part of the Node environment, not a 3rd party module.
-let command = process.argv[2];
+// Changes from process.argv to using yargs.argv. We used process.argv from nodes enviornment to illustrate how difficult it would be to parse through
+// the input passed in from the user. The yargs npm makes it much easier to parse through information putting things into an pbject as opposed to an Array.
+// const argv = yargs.argv;
+let command = argv._[0]
 
 // Logs the command at index 2
 console.log('Command: ', command);
