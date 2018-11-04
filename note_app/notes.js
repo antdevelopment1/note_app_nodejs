@@ -54,8 +54,19 @@ let readNote = (title) => {
 }
 
 let removeNote = (title) => {
-    console.log('Note has been removed.', title);
-}
+    // Fetch notes
+    let notes = fetchNotes();
+
+    // Filters notes, only returning true for the ones that do not equal the title of the note that was paased by user
+    let filteredNotes = notes.filter((note) => note.title !== title);
+
+    // Only writes the data to our json file for values that were not passed by our user
+    saveNotes(filteredNotes);
+    
+    // Evaluates to see if our original object is the same length as our filtered object. This checks to see if their the same length
+    // because if they are not the same length this means a title has been deleted and we return that bollean value to our removeNote function
+    return notes.length !== filteredNotes.length;
+};
 
 module.exports = {
     addNote: addNote,
@@ -63,5 +74,8 @@ module.exports = {
     readNote: readNote,
     removeNote: removeNote
 };
+
+
+// Question does writefileSync know to overwrite itself if it already exsists
 
 
