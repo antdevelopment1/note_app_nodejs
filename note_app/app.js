@@ -29,14 +29,22 @@ console.log('Command: ', command);
 // console.log('Yargs', argv);
 // Checks if the command variable paased equals add, list, read, or, remove with error meesage otherwise.
 if (command === 'add') {
-    // 
+
+    // We save the function call of addNote called on a property of argv and save it to note.
+    // This function is called on notes which is our parsed javascript object.
     let note = notes.addNote(argv.title, argv.body);
+
+    // If our note is a valid object
     if (note) {
+
+        // We log to the user the note has been created
         console.log('Note created.');
         console.log('------');
         console.log('Title: ' + note.title);
         console.log('Body: ' + note.body);
+
     } else {
+        // Otherwise if it's not a valid object becuase our title already exists we log to the user letting them know the title they have chosen already exsists
         console.log('Please choose a different title name. Title already exsists');
     }
 } else if (command === 'list') {
@@ -44,8 +52,17 @@ if (command === 'add') {
 } else if (command === 'read') {
     notes.readNote(argv.title);
 } else if (command === 'remove') {
-    console.log('Removing note');
-    notes.removeNote(argv.title);
+
+    // We save the function call of removeNote called on a property of argv and save it to noteRemoved.
+    // This function is called on notes which is our parsed javascript object.
+    let noteRemoved = notes.removeNote(argv.title);
+
+    // If our function call returns true then we will log to the user that a note was removed
+    // Otherwise we want to log that the note was not found because has been removed
+    let message = noteRemoved ? 'Note was removed' : 'Note was not found';
+    console.log(message);
+
+  //  If no valid command has been entered then we want to log command not recognized. 
 } else {
     console.log('Command not recognized')
 }
