@@ -24,19 +24,19 @@ let command = process.argv[2];
 // Logs the command at index 2
 console.log('Command: ', command);
 
-// Logs the updated array with our command
-console.log('Process', process.argv);
+// Logs the updated array with our comman
 console.log('Yargs', argv);
 
 // Checks if the command variable paased equals add, list, read, or, remove with error meesage otherwise.
 if (command === 'add') {
-    console.log('Adding new note');
+    notes.addNote(argv.title, argv.body);
 } else if (command === 'list') {
-    console.log('Listing all notes');
+    notes.getAll();
 } else if (command === 'read') {
-    console.log('Note being read');
+    notes.readNote(argv.title);
 } else if (command === 'remove') {
     console.log('Removing note');
+    notes.removeNote(argv.title);
 } else {
     console.log('Command not recgonized')
 }
