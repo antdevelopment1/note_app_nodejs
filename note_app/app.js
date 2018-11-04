@@ -25,11 +25,20 @@ let command = argv._[0]
 // Logs the command at index 2
 console.log('Command: ', command);
 
-// Logs the updated array with our comman
-console.log('Yargs', argv);
+// Logs the updated array with our command
+// console.log('Yargs', argv);
 // Checks if the command variable paased equals add, list, read, or, remove with error meesage otherwise.
 if (command === 'add') {
-    notes.addNote(argv.title, argv.body);
+    // 
+    let note = notes.addNote(argv.title, argv.body);
+    if (note) {
+        console.log('Note created.');
+        console.log('------');
+        console.log('Title: ' + note.title);
+        console.log('Body: ' + note.body);
+    } else {
+        console.log('Please choose a different title name. Title already exsists');
+    }
 } else if (command === 'list') {
     notes.getAll();
 } else if (command === 'read') {
@@ -38,6 +47,6 @@ if (command === 'add') {
     console.log('Removing note');
     notes.removeNote(argv.title);
 } else {
-    console.log('Command not recgonized')
+    console.log('Command not recognized')
 }
 
