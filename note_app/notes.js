@@ -25,14 +25,22 @@ let addNote = (title, body) => {
     // added and converted back into json
     try {
         let notesString = fs.readFileSync('notes-data.json');
-
         // We then parse the data into
         notes = JSON.parse(notesString);
     } catch (e) {
 
     }
-    notes.push(note);
-    fs.writeFileSync('notes-data.json', JSON.stringify(notes));
+
+    // Will store an array with all notes that already exsists inside the notes array that have the title of the note the user will try to create
+    // This line will return a bollean value to see if the note that got passed to our 
+    let duplicateNotes = notes.filter((note) => note.title === title);
+
+    // If the length of our duplicateNotes === 0 meaning we have not yet duplicated the title name then we want to go ahead an execute our if statements code block
+    // Otherwise if we have duplicated the title name then we just won't push that data into our array
+    if (duplicateNotes.length === 0) {
+        notes.push(note);
+        fs.writeFileSync('notes-data.json', JSON.stringify(notes));
+    }
 
 };
 
