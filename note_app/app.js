@@ -27,7 +27,6 @@ console.log('Command: ', command);
 
 // Logs the updated array with our comman
 console.log('Yargs', argv);
-
 // Checks if the command variable paased equals add, list, read, or, remove with error meesage otherwise.
 if (command === 'add') {
     notes.addNote(argv.title, argv.body);
