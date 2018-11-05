@@ -52,13 +52,12 @@ let getAll = () => {
 }
 
 let readNote = (title) => {
-
     // Fetches our javascript object
     let notes = fetchNotes();
 
     // Checks to see which file was passed and returns a new array with only the value === to the title passed by user
     let filteredNotes = notes.filter((note) => note.title === title);
-
+    
     // We return the value of the first and only index in our array
     return filteredNotes[0];
 
