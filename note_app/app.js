@@ -1,6 +1,3 @@
-// Starting Note App
-console.log('Starting App');
-
 // =================
 //     MODULES
 // =================
@@ -19,8 +16,6 @@ const argv = yargs.argv;
 // const argv = yargs.argv;
 let command = argv._[0]
 
-// Logs the command at index 2
-console.log('Command: ', command);
 
 // Logs the updated array with our command
 // console.log('Yargs', argv);
@@ -39,15 +34,13 @@ if (command === 'add') {
         console.log('Please choose a different title name. Title already exsists');
     }
 } else if (command === 'list') {
-    notes.getAll();
-} else if (command === 'read') {
-    let note = notes.readNote(argv.title);
-    if (note) {
-        console.log('Note found');
+    let allNotes = notes.getAll();
+    console.log(`Printing ${allNotes.length} note(s).`);
+    allNotes.forEach((note) => {
         notes.logNote(note);
-    } else {
-        console.log('Note not found.')
-    }
+    })
+} else if (command === 'read') {
+        let note = notes.readNote();
 } else if (command === 'remove') {
     // We save the function call of removeNote called on a property of argv and save it to noteRemoved.
     // This function is called on notes which is our parsed javascript object.
