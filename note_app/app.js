@@ -9,8 +9,32 @@ const yargs = require('yargs');
 // Local node modules
 const notes = require('./notes.js');
 
+
+const titleOptions = {
+    describe: 'Title of note',
+    demand: true,
+    alias: '-t'
+};
+const bodyOptions = {
+        describe: 'Body of note',
+        demand: true,
+        alias: 'v'
+};
 // Uses yargs npm to parse passed values that get converted into an object
-const argv = yargs.argv;
+const argv = yargs
+.command('add', 'Add a new note.', {
+    title: titleOptions,
+    body: bodyOptions
+})
+.command('list', 'List all notes')
+.command('remove', 'Remove note', {
+    title: titleOptions
+})
+.command('read', 'Read note', {
+    title: titleOptions
+})
+.help()
+.argv;
 
 let command = argv._[0]
 
@@ -40,7 +64,13 @@ if (command === 'add') {
 
 } else if (command === 'read') {
 
-        let note = notes.readNote();
+        let note = notes.readNote(argv.title);
+        if (note) {
+            console.log('Note found');
+            notes.logNote(note);
+        } else {
+            console.log('Error note not found');
+        }
 
 } else if (command === 'remove') {
     
