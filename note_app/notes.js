@@ -50,7 +50,14 @@ let getAll = () => {
 }
 
 let readNote = (title) => {
-    console.log('Reading note', title);
+    // Fetches our javascript object
+    let notes = fetchNotes();
+
+    // Checks to see which file was passed and returns a new array with only the value === to the title passed by user
+    let filteredNotes = notes.filter((note) => note.title === title);
+
+    // We return the value of the first and only index in our array
+    return filteredNotes[0];
 }
 
 let removeNote = (title) => {
@@ -68,11 +75,18 @@ let removeNote = (title) => {
     return notes.length !== filteredNotes.length;
 };
 
+let logNote = (note) => {
+    console.log('------');
+    console.log('Title: ' + note.title);
+    console.log('Body: ' + note.body);
+};
+
 module.exports = {
     addNote: addNote,
     getAll: getAll,
     readNote: readNote,
-    removeNote: removeNote
+    removeNote: removeNote,
+    logNote: logNote
 };
 
 
